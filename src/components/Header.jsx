@@ -36,7 +36,7 @@ const Header = () => {
 
             <div className="d-lg-flex col-lg-3 justify-content-between align-items-center">
               <div>
-                <Link className="btn btn-secondary" to="/">
+                <Link className="btn btn-secondary rounded-0" to="/">
                   Login
                 </Link>
               </div>
