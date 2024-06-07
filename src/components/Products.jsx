@@ -9,14 +9,14 @@ const Products = () => {
   console.log(data);
 
   return (
-    <div className="bg-light py-4 px-5">
+    <div className="bg-light py-4 px-5 h-100">
       <p>
         <span className="fw-bold fs-5">Showing All Products</span>{" "}
         <span className="px-3">
-          ( Showing{" "}
           {data &&
-            `${data.length} ${data.length === 1 ? "product" : "products"}`}{" "}
-          )
+            `(Showing ${data.length} ${
+              data.length === 1 ? "product" : "products"
+            })`}{" "}
         </span>
       </p>
       <div className="row g-5 pt-2 pb-5">
@@ -35,12 +35,16 @@ const Products = () => {
             );
             return (
               <div className="col-md-4" key={product._id}>
-                <div className="card">
+                <div className="card h-100">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="card-img-top"
-                    style={{ height: "317px" }}
+                    style={{
+                      width: "100%",
+                      height: "23vw",
+                      objectFit: "cover",
+                    }}
                   />
 
                   <div className="card-body">
@@ -80,7 +84,10 @@ const Products = () => {
                     </div>
 
                     <div className="d-grid mt-2 mx-auto">
-                      <Link className="btn btn-primary rounded-0" type="button">
+                      <Link
+                        className="btn btn-primary rounded-0 mt-auto"
+                        type="button"
+                      >
                         Go to Cart
                       </Link>
                     </div>
@@ -89,51 +96,6 @@ const Products = () => {
               </div>
             );
           })}
-
-        <div className="col-md-4">
-          <div className="card">
-            <img
-              src="https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/8/u/h/s-popcorn-black-praizy-original-imahydwe7rzkb8mk.jpeg?q=70"
-              alt="product image"
-              className="card-img-top"
-              style={{ height: "317px" }}
-            />
-            <div className="card-body">
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h6 className="card-title text-secondary">Brand Name</h6>
-                  <h6 className="fw-normal">Product Name</h6>
-                </div>
-                <Link className="text-dark btn-outline-dark">
-                  <i className="bi bi-heart" style={{ fontSize: "25px" }}></i>
-                </Link>
-              </div>
-
-              <div>
-                <p className="card-text">
-                  <span className="fw-bold fs-5">
-                    <i className="bi bi-currency-rupee"></i>
-                    1500
-                  </span>
-                  <span className="text-decoration-line-through px-2 text-secondary">
-                    <i className="bi bi-currency-rupee"></i>
-                    3000
-                  </span>
-
-                  <span className="text-success fw-semibold">
-                    <small>50% off</small>
-                  </span>
-                </p>
-              </div>
-
-              <div className="d-grid mt-2 mx-auto">
-                <Link className="btn btn-primary rounded-0" type="button">
-                  Go to Cart
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
