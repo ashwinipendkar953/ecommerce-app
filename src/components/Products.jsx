@@ -55,7 +55,7 @@ const Products = () => {
                         </h6>
                         <h6 className="fw-normal">{`${product.name.slice(
                           0,
-                          25
+                          22
                         )}...`}</h6>
                       </div>
                       <Link className="text-dark btn-outline-dark">
@@ -84,10 +84,7 @@ const Products = () => {
                     </div>
 
                     <div className="d-grid mt-2 mx-auto">
-                      <Link
-                        className="btn btn-primary rounded-0 mt-auto"
-                        type="button"
-                      >
+                      <Link className="btn btn-primary rounded-0" type="button">
                         Go to Cart
                       </Link>
                     </div>

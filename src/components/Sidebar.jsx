@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <form className="py-4 px-2">
+    <form className="py-4 px-3">
       <div className="d-flex justify-content-between mb-3">
         <label className="form-label fw-bold">Filters</label>
         <Link className="text-dark">Clear</Link>

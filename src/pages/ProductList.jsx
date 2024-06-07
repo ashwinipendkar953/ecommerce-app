@@ -7,14 +7,12 @@ const ProductList = () => {
     <>
       <Header />
       <main>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-3">
-              <Sidebar />
-            </div>
-            <div className="col-md-9">
-              <Products />
-            </div>
+        <div className="row">
+          <div className="col-md-3">
+            <Sidebar />
+          </div>
+          <div className="col-md-9">
+            <Products />
           </div>
         </div>
       </main>
