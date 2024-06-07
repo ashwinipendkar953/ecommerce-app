@@ -19,7 +19,7 @@ const Products = () => {
             })`}{" "}
         </span>
       </p>
-      <div className="row g-5 pt-2 pb-5">
+      <div className="row g-4 pt-2 pb-5">
         {loading && <p>Loading...</p>}
 
         {error && (
@@ -34,7 +34,7 @@ const Products = () => {
               product.price - product.price * (product.discountPercentage / 100)
             );
             return (
-              <div className="col-md-6 col-lg-4" key={product._id}>
+              <div className="col-md-6 col-lg-4 col-xl-3" key={product._id}>
                 <div className="card rounded-0 h-100">
                   <img
                     src={product.image}
@@ -54,7 +54,16 @@ const Products = () => {
                           {product.brand}
                         </h6>
                         <h6 className="fw-normal">
-                          <small>{`${product.name.slice(0, 25)}...`}</small>
+                          <small className="d-none d-lg-inline">{`${product.name.slice(
+                            0,
+                            18
+                          )}...`}</small>
+                          <small className="d-none d-md-inline d-lg-none">
+                            {product.name.slice(0, 25)}...
+                          </small>
+                          <small className="d-inline d-md-none">
+                            {product.name.slice(0, 35)}...
+                          </small>
                         </h6>
                       </div>
                       <Link className="text-dark btn-outline-dark">
