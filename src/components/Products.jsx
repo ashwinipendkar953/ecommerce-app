@@ -34,15 +34,15 @@ const Products = () => {
               product.price - product.price * (product.discountPercentage / 100)
             );
             return (
-              <div className="col-md-4" key={product._id}>
-                <div className="card h-100">
+              <div className="col-md-6 col-lg-4" key={product._id}>
+                <div className="card rounded-0 h-100">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="card-img-top"
+                    className="card-img-top rounded-0"
                     style={{
                       width: "100%",
-                      height: "23vw",
+                      height: "300px",
                       objectFit: "cover",
                     }}
                   />
@@ -50,13 +50,12 @@ const Products = () => {
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
                       <div>
-                        <h6 className="card-title text-secondary">
+                        <h6 className="card-title text-muted">
                           {product.brand}
                         </h6>
-                        <h6 className="fw-normal">{`${product.name.slice(
-                          0,
-                          22
-                        )}...`}</h6>
+                        <h6 className="fw-normal">
+                          <small>{`${product.name.slice(0, 25)}...`}</small>
+                        </h6>
                       </div>
                       <Link className="text-dark btn-outline-dark">
                         <i
@@ -82,12 +81,12 @@ const Products = () => {
                         </span>
                       </p>
                     </div>
+                  </div>
 
-                    <div className="d-grid mt-2 mx-auto">
-                      <Link className="btn btn-primary rounded-0" type="button">
-                        Go to Cart
-                      </Link>
-                    </div>
+                  <div className="card-footer bg-primary text-center rounded-0">
+                    <Link className="text-light text-decoration-none">
+                      Go to Cart
+                    </Link>
                   </div>
                 </div>
               </div>
