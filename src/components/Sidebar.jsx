@@ -2,15 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ productsData = [], onFilterChange }) => {
-  const initialFormData = {
-    price: 250,
-    categories: ["All"],
-    rating: null,
-    sort: null,
-  };
-
-  const [formData, setFormData] = useState(initialFormData);
-
   const maxPrice =
     productsData.length > 0
       ? productsData.reduce(
@@ -18,6 +9,15 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
           0
         )
       : 2000;
+
+  const INITIAL_FORM_DATA = {
+    price: maxPrice,
+    categories: ["All"],
+    rating: null,
+    sortByPrice: null,
+  };
+
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   const categoryChangeHandler = (event) => {
     const { checked, value } = event.target;
@@ -44,11 +44,34 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
   };
 
   useEffect(() => {
-    const filteredData = formData.categories.includes("All")
-      ? productsData
-      : productsData.filter((product) =>
-          formData.categories.includes(product.category)
-        );
+    const applyDiscount = (price, discount) => price - price * (discount / 100);
+
+    const filterByCategory = (products, categories) =>
+      categories.includes("All")
+        ? products
+        : products.filter((product) => categories.includes(product.category));
+
+    const filterByRating = (products, rating) =>
+      products.filter((product) => product.rating >= rating);
+
+    const sortByPrice = (products, sortBy) =>
+      products.sort((a, b) => {
+        const priceA = applyDiscount(a.price, a.discountPercentage);
+        const priceB = applyDiscount(b.price, b.discountPercentage);
+        return sortBy === "lowToHigh" ? priceA - priceB : priceB - priceA;
+      });
+
+    const filterByPrice = (products, maxPrice) =>
+      products.filter(
+        (product) =>
+          applyDiscount(product.price, product.discountPercentage) <= maxPrice
+      );
+
+    let filteredData = filterByCategory(productsData, formData.categories);
+    filteredData = filterByRating(filteredData, formData.rating);
+    filteredData = sortByPrice(filteredData, formData.sortByPrice);
+    filteredData = filterByPrice(filteredData, formData.price);
+
     onFilterChange(filteredData);
   }, [formData, productsData]);
 
@@ -58,7 +81,7 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
         <label className="form-label fw-bold">Filters</label>
         <Link
           type="button"
-          onClick={() => setFormData(initialFormData)}
+          onClick={() => setFormData(INITIAL_FORM_DATA)}
           className="text-dark"
         >
           Clear
@@ -162,6 +185,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="4"
             id="ratingFourAndAbove"
             name="rating"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                rating: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="ratingFourAndAbove">
             4 stars & above
@@ -175,6 +204,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="3"
             id="ratingThreeAndAbove"
             name="rating"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                rating: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="ratingThreeAndAbove">
             3 stars & above
@@ -188,6 +223,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="2"
             id="ratingTwoAndAbove"
             name="rating"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                rating: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="ratingTwoAndAbove">
             2 stars & above
@@ -201,6 +242,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="1"
             id="ratingOneAndAbove"
             name="rating"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                rating: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="ratingOneAndAbove">
             1 stars & above
@@ -218,6 +265,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="lowToHigh"
             id="lowToHigh"
             name="sortByPrice"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                sortByPrice: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="lowToHigh">
             Price - Low to High
@@ -231,6 +284,12 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
             value="highToLow"
             id="highToLow"
             name="sortByPrice"
+            onChange={(event) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                sortByPrice: event.target.value,
+              }))
+            }
           />
           <label className="form-check-label" htmlFor="highToLow">
             Price - High to Low
