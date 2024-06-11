@@ -21,7 +21,7 @@ const CategoryCardView = () => {
               <div className="card-img-overlay d-flex flex-column justify-content-center text-center">
                 <Link
                   className="card-text text-white text-decoration-none fw-bolder fs-5"
-                  to={`/products/${category._id}`}
+                  to={`/products/${category.name}`}
                 >
                   {category.name}
                 </Link>

@@ -12,7 +12,7 @@ import ProductList from "./pages/ProductList.jsx";
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "/products", element: <ProductList /> },
-  { path: "/products/:categoryId", element: <ProductList /> },
+  { path: "/products/:categoryName", element: <ProductList /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

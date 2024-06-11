@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 const Sidebar = ({ productsData = [], onFilterChange }) => {
-  const { data } = useFetch(
+  const { data: categoriesData } = useFetch(
     "https://4c7ed629-ffb2-449c-83b8-7974797d0510-00-2b5gxma3p76yy.sisko.replit.dev/api/categories"
   );
+
+  const { categoryName } = useParams();
 
   const maxPrice =
     productsData.length > 0
@@ -17,7 +19,7 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
 
   const INITIAL_FORM_DATA = {
     price: maxPrice,
-    categories: ["All"],
+    categories: categoryName,
     rating: null,
     sortByPrice: null,
   };
@@ -122,7 +124,7 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
       {/* categories */}
       <div className="mb-3">
         <label className="form-label fw-bold">Category</label>
-        {data?.map((category) => (
+        {categoriesData?.map((category) => (
           <div className="form-check" key={category._id}>
             <input
               className="form-check-input"
