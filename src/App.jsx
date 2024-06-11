@@ -1,7 +1,7 @@
 import Header from "./components/Header";
-import bannerImage from "./assets/images/banner.jpg";
-import { Link } from "react-router-dom";
+
 import CategoryCardView from "./components/CategoryCardView";
+import Carousel from "./components/Carousel";
 
 function App() {
   return (
@@ -9,13 +9,7 @@ function App() {
       <Header />
       <main className="bg-body-tertiary">
         <CategoryCardView />
-        <div className="container ">
-          <div className="text-center">
-            <Link to="/products">
-              <img src={bannerImage} alt="Banner Image" className="img-fluid" />
-            </Link>
-          </div>
-        </div>
+        <Carousel />
         <div className="container py-5">
           <div className="row g-3">
             <div className="col-md-6 ">
