@@ -1,27 +1,14 @@
 import Header from "./components/Header";
 import bannerImage from "./assets/images/banner.jpg";
 import { Link } from "react-router-dom";
+import CategoryCardView from "./components/CategoryCardView";
 
 function App() {
   return (
     <>
       <Header />
       <main className="bg-body-tertiary">
-        <div className="container py-3">
-          <div className="d-flex justify-content-around ">
-            <Link className="btn btn-dark my-2">
-              <h5>Men Clothing</h5>
-            </Link>
-
-            <Link className="btn btn-dark my-2">
-              <h5>Women Clothing</h5>
-            </Link>
-
-            <Link className="btn btn-dark my-2">
-              <h5>Kids Clothing</h5>
-            </Link>
-          </div>
-        </div>
+        <CategoryCardView />
         <div className="container ">
           <div className="text-center">
             <Link to="/products">

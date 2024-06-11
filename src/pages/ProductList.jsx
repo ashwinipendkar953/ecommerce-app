@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar";
 import Products from "../components/Products";
 import Header from "../components/Header";
 import useFetch from "../hooks/useFetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProductList = () => {
   const { data, loading, error } = useFetch(

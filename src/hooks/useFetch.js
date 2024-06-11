@@ -7,10 +7,14 @@ const useFetch = (url, initialData) => {
 
   useEffect(() => {
     setLoading(true);
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => setData(data))
-      .catch((error) => setError(error.message))
+      .catch((error) => {
+        setError(error.message);
+        setData([]);
+      })
       .finally(() => setLoading(false));
   }, [url]);
 
