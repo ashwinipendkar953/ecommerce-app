@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 const Sidebar = ({ productsData = [], onFilterChange }) => {
+  const { data } = useFetch(
+    "https://4c7ed629-ffb2-449c-83b8-7974797d0510-00-2b5gxma3p76yy.sisko.replit.dev/api/categories"
+  );
+
   const maxPrice =
     productsData.length > 0
       ? productsData.reduce(
@@ -117,142 +122,50 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
       {/* categories */}
       <div className="mb-3">
         <label className="form-label fw-bold">Category</label>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value="All"
-            id="all"
-            name="All"
-            checked={formData.categories.includes("All")}
-            onChange={categoryChangeHandler}
-          />
-          <label className="form-check-label" htmlFor="all">
-            All
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value="Men"
-            id="men"
-            name="Men"
-            checked={formData.categories.includes("Men")}
-            onChange={categoryChangeHandler}
-          />
-          <label className="form-check-label" htmlFor="men">
-            Men Clothing
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value="Women"
-            id="women"
-            name="Women"
-            checked={formData.categories.includes("Women")}
-            onChange={categoryChangeHandler}
-          />
-          <label className="form-check-label" htmlFor="women">
-            Women Clothing
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            value="Kids"
-            id="kids"
-            name="Kids"
-            checked={formData.categories.includes("Kids")}
-            onChange={categoryChangeHandler}
-          />
-          <label className="form-check-label" htmlFor="kids">
-            Kids Clothing
-          </label>
-        </div>
+        {data?.map((category) => (
+          <div className="form-check" key={category._id}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              value={category.name}
+              id={category._id}
+              name={category.name}
+              checked={formData.categories.includes(`${category.name}`)}
+              onChange={categoryChangeHandler}
+            />
+            <label className="form-check-label" htmlFor={category._id}>
+              {category.name}
+            </label>
+          </div>
+        ))}
       </div>
 
       {/* rating */}
       <div className="mb-3">
         <label className="form-label fw-bold">Rating</label>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value="4"
-            id="ratingFourAndAbove"
-            name="rating"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                rating: event.target.value,
-              }))
-            }
-          />
-          <label className="form-check-label" htmlFor="ratingFourAndAbove">
-            4 stars & above
-          </label>
-        </div>
-
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value="3"
-            id="ratingThreeAndAbove"
-            name="rating"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                rating: event.target.value,
-              }))
-            }
-          />
-          <label className="form-check-label" htmlFor="ratingThreeAndAbove">
-            3 stars & above
-          </label>
-        </div>
-
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value="2"
-            id="ratingTwoAndAbove"
-            name="rating"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                rating: event.target.value,
-              }))
-            }
-          />
-          <label className="form-check-label" htmlFor="ratingTwoAndAbove">
-            2 stars & above
-          </label>
-        </div>
-
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value="1"
-            id="ratingOneAndAbove"
-            name="rating"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                rating: event.target.value,
-              }))
-            }
-          />
-          <label className="form-check-label" htmlFor="ratingOneAndAbove">
-            1 stars & above
-          </label>
-        </div>
+        {[4, 3, 2, 1].map((rating) => (
+          <div className="form-check" key={rating}>
+            <input
+              className="form-check-input"
+              type="radio"
+              value={rating}
+              id={`rating${rating}AndAbove`}
+              name="rating"
+              onChange={(event) =>
+                setFormData((prevData) => ({
+                  ...prevData,
+                  rating: event.target.value,
+                }))
+              }
+            />
+            <label
+              className="form-check-label"
+              htmlFor={`rating${rating}AndAbove`}
+            >
+              {rating} stars & above
+            </label>
+          </div>
+        ))}
       </div>
 
       {/* sort */}
