@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Products = ({ data, loading, error }) => {
-  // console.log(data);
-
   return (
     <div className="bg-light py-4 px-5 h-100">
       <p>
@@ -61,9 +59,13 @@ const Products = ({ data, loading, error }) => {
                           </small>
                         </h6>
                       </div>
-                      <Link className="text-dark btn-outline-dark">
+                      <Link
+                        className={`btn-outline-dark ${
+                          product.isWishlisted ? "text-danger" : "text-dark"
+                        }`}
+                      >
                         <i
-                          className="bi bi-heart"
+                          className="bi bi-heart-fill"
                           style={{ fontSize: "25px" }}
                         ></i>
                       </Link>

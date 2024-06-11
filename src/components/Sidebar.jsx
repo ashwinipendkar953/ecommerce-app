@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import useFiltering from "../hooks/useFiltering";
 
 const Sidebar = ({ productsData = [], onFilterChange }) => {
   const { data: categoriesData } = useFetch(
@@ -19,7 +20,7 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
 
   const INITIAL_FORM_DATA = {
     price: maxPrice,
-    categories: categoryName,
+    categories: categoryName ? categoryName : "All",
     rating: null,
     sortByPrice: null,
   };
@@ -50,37 +51,7 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
     });
   };
 
-  useEffect(() => {
-    const applyDiscount = (price, discount) => price - price * (discount / 100);
-
-    const filterByCategory = (products, categories) =>
-      categories.includes("All")
-        ? products
-        : products.filter((product) => categories.includes(product.category));
-
-    const filterByRating = (products, rating) =>
-      products.filter((product) => product.rating >= rating);
-
-    const sortByPrice = (products, sortBy) =>
-      products.sort((a, b) => {
-        const priceA = applyDiscount(a.price, a.discountPercentage);
-        const priceB = applyDiscount(b.price, b.discountPercentage);
-        return sortBy === "lowToHigh" ? priceA - priceB : priceB - priceA;
-      });
-
-    const filterByPrice = (products, maxPrice) =>
-      products.filter(
-        (product) =>
-          applyDiscount(product.price, product.discountPercentage) <= maxPrice
-      );
-
-    let filteredData = filterByCategory(productsData, formData.categories);
-    filteredData = filterByRating(filteredData, formData.rating);
-    filteredData = sortByPrice(filteredData, formData.sortByPrice);
-    filteredData = filterByPrice(filteredData, formData.price);
-
-    onFilterChange(filteredData);
-  }, [formData, productsData]);
+  useFiltering(productsData, formData, setFormData, onFilterChange);
 
   return (
     <form className="py-4 px-3">
