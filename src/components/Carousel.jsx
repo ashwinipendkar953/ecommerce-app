@@ -1,9 +1,11 @@
-import banner1 from "../assets/images/banner1.png";
-import banner2 from "../assets/images/banner2.jpg";
-import banner3 from "../assets/images/banner3.png";
-import banner4 from "../assets/images/banner4.png";
-
-const carouselImages = [banner1, banner2, banner3, banner4];
+const carouselImages = [
+  "https://images.template.net/108395/new-arrival-fashion-banner-template-edit-online.jpg",
+  "https://images.template.net/108444/free-modern-fashion-banner-edit-online.jpg",
+  "https://images.template.net/108266/free-fashion-digital-marketing-banner-edit-online.jpg",
+  "https://images.template.net/178234/fashion-facebook-ad-banner-template-edit-online.jpg",
+  "https://images.template.net/220707/summer-fashion-banner-template-edit-online.jpg",
+  "https://images.template.net/227797/winter-fashion-banner-edit-online.jpg",
+];
 
 const Carousel = () => {
   return (
@@ -23,9 +25,8 @@ const Carousel = () => {
               >
                 <img
                   src={image}
-                  className="d-block w-100"
+                  className="d-block w-100 img-fluid "
                   alt={`Carousel Image ${index}`}
-                  style={{ height: "500px" }}
                 />
               </div>
             ))}

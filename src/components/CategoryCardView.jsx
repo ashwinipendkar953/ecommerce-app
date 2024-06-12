@@ -15,8 +15,8 @@ const CategoryCardView = () => {
               <img
                 src={category.image}
                 alt={category.name}
-                className="img-fluid"
-                style={{ height: "150px" }}
+                className="img-fluid object-fit-cover"
+                style={{ height: "150px", width: "100%" }}
               />
               <div className="card-img-overlay d-flex flex-column justify-content-center text-center">
                 <Link
