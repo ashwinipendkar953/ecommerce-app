@@ -61,7 +61,7 @@ const Products = ({ data, loading, error }) => {
                       </div>
                       <Link
                         className={`btn-outline-dark ${
-                          product.isWishlisted ? "text-danger" : "text-dark"
+                          product.isWishlisted ? "text-pink" : "text-dark"
                         }`}
                       >
                         <i
@@ -82,15 +82,15 @@ const Products = ({ data, loading, error }) => {
                           {product.price}
                         </span>
 
-                        <span className="text-success fw-semibold">
+                        <span className="text-pink fw-semibold">
                           <small>{product.discountPercentage}% off</small>
                         </span>
                       </p>
                     </div>
                   </div>
 
-                  <div className="card-footer bg-primary text-center rounded-0">
-                    <Link className="text-light text-decoration-none">
+                  <div className="card-footer btn-pink text-center rounded-0">
+                    <Link className="text-light text-decoration-none fw-semibold">
                       Go to Cart
                     </Link>
                   </div>

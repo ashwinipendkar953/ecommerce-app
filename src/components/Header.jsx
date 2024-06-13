@@ -6,7 +6,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand col-lg-3" to="/">
-            <span className="text-body-tertiary fw-bold">MyShoppingSite</span>
+            <span className="text-pink fw-bold">EcomEase</span>
           </Link>
           <button
             className="navbar-toggler"
@@ -36,7 +36,7 @@ const Header = () => {
 
             <div className="d-lg-flex col-lg-3 justify-content-between align-items-center">
               <div>
-                <Link className="btn btn-secondary rounded-0" to="/">
+                <Link className="btn btn-pink fw-semibold" to="/">
                   Login
                 </Link>
               </div>
@@ -50,7 +50,7 @@ const Header = () => {
               <div>
                 <Link className="text-dark text-decoration-none">
                   <i className="bi bi-cart" style={{ fontSize: "25px" }}></i>
-                  <span className="fw-bold px-2">Cart</span>
+                  <span className="fw-bold px-2 text-hover-pink">Cart</span>
                 </Link>
               </div>
             </div>

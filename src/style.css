@@ -1,3 +1,20 @@
-.custom-range {
-  accent-color: red;
+.text-pink {
+  color: #fc2779;
+}
+
+.text-hover-pink:hover {
+  color: #fc2779;
+}
+
+.bg-pink {
+  background-color: #e80071;
+}
+
+.btn-pink {
+  background-color: #e80071 !important;
+  color: white !important;
+}
+
+.footer-bg {
+  background-color: rgb(232, 0, 113);
 }

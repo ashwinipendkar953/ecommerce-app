@@ -28,7 +28,7 @@ function App() {
                       Check out our latest arrivals and update your wardrobe
                       with the trendiest, most fashionable pieces this season.
                     </p>
-                    <a href="/products" className="btn btn-dark">
+                    <a href="/products" className="btn btn-pink fw-semibold">
                       Shop New Arrivals
                     </a>
                   </div>
@@ -52,7 +52,7 @@ function App() {
                       Discover our exclusive Monsoon Collection, designed to
                       keep you chic and comfortable in the rain.
                     </p>
-                    <a href="/products" className="btn btn-dark">
+                    <a href="/products" className="btn btn-pink fw-semibold">
                       Explore Monsoon Collection
                     </a>
                   </div>
