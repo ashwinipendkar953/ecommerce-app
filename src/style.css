@@ -24,6 +24,12 @@
   background-color: rgb(232, 0, 113);
 }
 
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 input[type="search"] {
   width: 100%;
   background-image: url("./assets/icons8-search-30.png");
