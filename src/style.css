@@ -6,6 +6,11 @@
   color: #fc2779;
 }
 
+.active {
+  width: 375px;
+  border-color: #e80071;
+}
+
 .bg-pink {
   background-color: #e80071;
 }
@@ -17,4 +22,12 @@
 
 .footer-bg {
   background-color: rgb(232, 0, 113);
+}
+
+input[type="search"] {
+  width: 100%;
+  background-image: url("./assets/icons8-search-30.png");
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 30px 12px 50px;
 }

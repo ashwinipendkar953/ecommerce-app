@@ -9,11 +9,19 @@ function App() {
       <Header />
       <main className="bg-body-tertiary">
         <CategoryCardView />
+        <div className="container mb-3">
+          <img
+            src="https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-12062024-URGENCYSTRIPS-lastfewhrs.gif"
+            alt=""
+            className="img-fluid"
+          />
+        </div>
         <Carousel />
+
         <div className="container py-5">
           <div className="row g-3">
             <div className="col-md-6 ">
-              <div className="p-4 bg-secondary-subtle">
+              <div className="p-4 bg-white">
                 <div className="row g-3">
                   <div className="col-md-4">
                     <img
@@ -23,7 +31,7 @@ function App() {
                     />
                   </div>
                   <div className="col-md-8">
-                    <h5>Fresh New Styles for the Season 🌟</h5>
+                    <h5>Fresh New Styles for the Season </h5>
                     <p>
                       Check out our latest arrivals and update your wardrobe
                       with the trendiest, most fashionable pieces this season.
@@ -37,7 +45,7 @@ function App() {
             </div>
 
             <div className="col-md-6 ">
-              <div className="p-4 bg-secondary-subtle">
+              <div className="p-4 bg-white">
                 <div className="row g-3">
                   <div className="col-md-4">
                     <img
@@ -47,7 +55,7 @@ function App() {
                     />
                   </div>
                   <div className="col-md-8">
-                    <h5>Embrace the Monsoon with Style 🌧️</h5>
+                    <h5>Embrace the Monsoon with Style</h5>
                     <p>
                       Discover our exclusive Monsoon Collection, designed to
                       keep you chic and comfortable in the rain.

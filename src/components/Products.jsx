@@ -89,9 +89,9 @@ const Products = ({ data, loading, error }) => {
                     </div>
                   </div>
 
-                  <div className="card-footer btn-pink text-center rounded-0">
+                  <div className="card-footer btn-pink text-center rounded-0 ">
                     <Link className="text-light text-decoration-none fw-semibold">
-                      Go to Cart
+                      Add to Cart
                     </Link>
                   </div>
                 </div>
