@@ -3,6 +3,7 @@ import Products from "../components/Products";
 import Header from "../components/Header";
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
+import Footer from "../components/Footer";
 
 const ProductList = () => {
   const { data, loading, error } = useFetch(
@@ -32,6 +33,7 @@ const ProductList = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

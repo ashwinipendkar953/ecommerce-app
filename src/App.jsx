@@ -2,6 +2,7 @@ import Header from "./components/Header";
 
 import CategoryCardView from "./components/CategoryCardView";
 import Carousel from "./components/Carousel";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
