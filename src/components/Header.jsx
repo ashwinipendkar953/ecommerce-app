@@ -34,7 +34,7 @@ const Header = () => {
               </form>
             </div>
 
-            <div className="d-lg-flex col-lg-3 justify-content-between align-items-center">
+            <div className="d-lg-flex col-md-3 justify-content-between align-items-center">
               <Link className="btn btn-pink fw-semibold" to="/">
                 Login
               </Link>
@@ -74,7 +74,7 @@ const Header = () => {
                 </span>
                 <span
                   className="text-hover-pink fw-semibold "
-                  style={{ paddingLeft: "15px" }}
+                  style={{ paddingLeft: "4px" }}
                 >
                   Cart
                 </span>

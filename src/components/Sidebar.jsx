@@ -60,9 +60,9 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
         <Link
           type="button"
           onClick={() => setFormData(INITIAL_FORM_DATA)}
-          className="text-dark"
+          className="text-pink fw-semibold"
         >
-          Clear
+          Clear All
         </Link>
       </div>
 
@@ -76,13 +76,11 @@ const Sidebar = ({ productsData = [], onFilterChange }) => {
         </div>
         <input
           type="range"
-          name="price"
           id="price"
           min="0"
           max={maxPrice}
           value={formData.price}
-          step="5"
-          className="form-range "
+          className="w-100"
           onChange={(event) =>
             setFormData((prevData) => ({
               ...prevData,
