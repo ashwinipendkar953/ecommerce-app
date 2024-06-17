@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 
 const CategoryCardView = () => {
   const { data, loading, error } = useFetch(
-    "https://ecommerce-api-4rav.onrender.com/api/categories"
+    "https://ecommerce-api-teal.vercel.app/api/categories"
   );
 
   return (

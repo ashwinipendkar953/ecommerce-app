@@ -1,23 +1,23 @@
 .text-pink,
 .text-hover-pink:hover {
-  color: #fc2779;
+  color: #ff3e6c;
 }
 
 .border-pink {
-  border-color: #fc2779;
+  border-color: #fc274b;
 }
 
 .bg-pink {
-  background-color: #ff3e6c;
+  background-color: #fc274b;
 }
 
 .footer-bg {
-  background-color: #ff3e6c;
+  background-color: #fc274b;
 }
 
 .active {
   width: 375px;
-  border-color: #fc2779;
+  border-color: #ff3e6c;
 }
 
 .btn-pink {

@@ -7,7 +7,7 @@ import ProductFilter from "../components/ProductFilter";
 
 const ProductList = () => {
   const { data, loading, error } = useFetch(
-    "https://ecommerce-api-4rav.onrender.com/api/products"
+    "https://ecommerce-api-teal.vercel.app/api/products"
   );
   const [filteredData, setFilteredData] = useState(data);
 
