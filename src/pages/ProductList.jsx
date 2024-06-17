@@ -1,9 +1,9 @@
-import Sidebar from "../components/Sidebar";
-import Products from "../components/Products";
+import { useState } from "react";
 import Header from "../components/Header";
 import useFetch from "../hooks/useFetch";
-import { useState } from "react";
 import Footer from "../components/Footer";
+import ProductCard from "../components/ProductCard";
+import ProductFilter from "../components/ProductFilter";
 
 const ProductList = () => {
   const { data, loading, error } = useFetch(
@@ -22,13 +22,17 @@ const ProductList = () => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-3">
-              <Sidebar
+              <ProductFilter
                 productsData={data}
                 onFilterChange={handleFilterChange}
               />
             </div>
             <div className="col-md-9">
-              <Products data={filteredData} loading={loading} error={error} />
+              <ProductCard
+                data={filteredData}
+                loading={loading}
+                error={error}
+              />
             </div>
           </div>
         </div>

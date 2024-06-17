@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Products = ({ data, loading, error }) => {
+const ProductCard = ({ data, loading, error }) => {
   return (
     <div className="bg-light py-4 px-5 h-100">
       <p>
@@ -48,7 +48,7 @@ const Products = ({ data, loading, error }) => {
                           {product.brand}
                         </h6>
                         <h6 className="fw-semibold">
-                          {product.name.slice(0, 30)}...
+                          {product.name.slice(0, 25)}...
                         </h6>
                       </div>
                     </div>
@@ -56,8 +56,10 @@ const Products = ({ data, loading, error }) => {
                     {/* price */}
                     <div>
                       <p className="card-text">
-                        <span className="text-secondary">MRP: </span>
-                        <span className="text-decoration-line-through text-secondary mx-1 ">
+                        <span
+                          className="text-decoration-line-through text-secondary"
+                          style={{ marginRight: "5px" }}
+                        >
                           ₹{product.price}
                         </span>
                         <span className="fw-semibold ">₹{discountedPrice}</span>
@@ -69,7 +71,12 @@ const Products = ({ data, loading, error }) => {
                     </div>
 
                     {/* rating */}
-                    <div>{product.rating}</div>
+                    <div>
+                      {product.rating}{" "}
+                      <span>
+                        <i className="bi bi-star-fill"></i>
+                      </span>
+                    </div>
                   </div>
 
                   <div
@@ -99,7 +106,10 @@ const Products = ({ data, loading, error }) => {
                       className="col-9 center-content bg-pink"
                       style={{ borderRadius: "0 0 5px 0" }}
                     >
-                      <Link className="text-light text-decoration-none fw-semibold">
+                      <Link
+                        type="button"
+                        className="text-light text-decoration-none fw-semibold"
+                      >
                         Add to Cart
                       </Link>
                     </div>
@@ -113,4 +123,4 @@ const Products = ({ data, loading, error }) => {
   );
 };
 
-export default Products;
+export default ProductCard;
