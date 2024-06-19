@@ -5,7 +5,7 @@ import useFiltering from "../hooks/useFiltering";
 
 const ProductFilter = ({ productsData = [], onFilterChange }) => {
   const { data: categoriesData } = useFetch(
-    "https://4c7ed629-ffb2-449c-83b8-7974797d0510-00-2b5gxma3p76yy.sisko.replit.dev/api/categories"
+    "https://ecommerce-api-teal.vercel.app/api/categories"
   );
 
   const { categoryName } = useParams();
