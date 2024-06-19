@@ -13,7 +13,18 @@ const ProductCard = ({ data, loading, error }) => {
         </span>
       </p>
       <div className="row g-4 pt-2 pb-5">
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <div className="d-flex justify-content-center align-items-center">
+            <div
+              className="spinner-border text-primary me-2 spinner-border-sm"
+              aria-hidden="true"
+              style={{ width: "1.5rem", height: "1.5rem" }}
+            ></div>
+            <p className="mb-0" role="status">
+              Loading Products...
+            </p>
+          </div>
+        )}
 
         {error && (
           <p className="text-danger">

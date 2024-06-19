@@ -8,7 +8,18 @@ const CategoryCardView = () => {
 
   return (
     <div className="container py-3">
-      {loading && <p>Loading categories...</p>}
+      {loading && (
+        <div className="d-flex align-items-center mb-3">
+          <div
+            className="spinner-border text-primary me-2 spinner-border-sm"
+            aria-hidden="true"
+            style={{ width: "1.5rem", height: "1.5rem" }}
+          ></div>
+          <p className="mb-0" role="status">
+            Loading categories...
+          </p>
+        </div>
+      )}
       {error && (
         <p className="text-danger">
           An error ocurred while getting categories.

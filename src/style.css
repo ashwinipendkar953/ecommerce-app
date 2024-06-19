@@ -4,7 +4,7 @@
 }
 
 .border-pink {
-  border-color: #fc274b;
+  border-color: #fc274b !important;
 }
 
 .bg-pink {
