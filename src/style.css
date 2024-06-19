@@ -3,6 +3,21 @@
   color: #ff3e6c;
 }
 
+.bg-lightgreen {
+  background-color: #e5f7ee;
+}
+
+.star-color {
+  color: #fed948;
+}
+
+@media (min-width: 992px) {
+  .custom-col-lg-2 {
+    /* flex: 0 0 auto; */
+    width: 20% !important;
+  }
+}
+
 .border-pink {
   border-color: #fc274b !important;
 }

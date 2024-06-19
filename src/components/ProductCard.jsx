@@ -75,7 +75,7 @@ const ProductCard = ({ data, loading, error }) => {
                         </span>
                         <span className="fw-semibold ">₹{discountedPrice}</span>
                         <span className="mx-1">|</span>
-                        <span className="text-success">
+                        <span className="text-success bg-lightgreen fw-semibold px-1">
                           {product.discountPercentage}% off
                         </span>
                       </p>
@@ -85,7 +85,7 @@ const ProductCard = ({ data, loading, error }) => {
                     <div>
                       {product.rating}{" "}
                       <span>
-                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill star-color accordion-buttonr"></i>
                       </span>
                     </div>
                   </div>

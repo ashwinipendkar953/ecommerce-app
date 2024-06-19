@@ -22,30 +22,33 @@ const CategoryCardView = () => {
       )}
       {error && (
         <p className="text-danger">
-          An error ocurred while getting categories.
+          An error occurred while getting categories.
         </p>
       )}
-      <div className="row g-3">
-        {data?.map((category) => (
-          <div key={category._id} className="col-md-3">
-            <div className="card rounded-0">
-              <img
-                src={category.image}
-                alt={category.name}
-                className="img-fluid object-fit-cover"
-                style={{ height: "150px", width: "100%" }}
-              />
-              <div className="card-img-overlay d-flex flex-column justify-content-center text-center">
-                <Link
-                  className="card-text text-white text-decoration-none fw-bolder fs-5"
-                  to={`/products/${category.name}`}
-                >
-                  {category.name}
-                </Link>
+      <div className="row d-lg-flex justify-content-between g-3">
+        {data?.map((category) => {
+          if (category.name === "All") return null;
+          return (
+            <div key={category._id} className="custom-col-lg-2 col-md-6">
+              <div className="card rounded-0">
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="img-fluid object-fit-cover"
+                  style={{ height: "150px", width: "100%" }}
+                />
+                <div className="card-img-overlay d-flex flex-column justify-content-center text-center">
+                  <Link
+                    className="card-text w-100 text-white text-decoration-none fw-bolder fs-4"
+                    to={`/products/${category.name}`}
+                  >
+                    {category.name}
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
