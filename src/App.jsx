@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="bg-body-tertiary">
+      <main className="bg-light">
         <CategoryCardView />
         <div className="container mb-3">
           <img
@@ -21,18 +21,18 @@ function App() {
 
         <div className="container py-5">
           <div className="row g-3">
-            <div className="col-md-6  border-pink">
-              <div className="card">
-                <div className="p-4 bg-white">
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="card-body bg-white">
                   <div className="row g-3">
-                    <div className="col-md-4">
+                    <div className="col-4">
                       <img
                         src="https://img.freepik.com/free-photo/woman-wearing-high-heels-stocking_23-2150261096.jpg?t=st=1718105552~exp=1718109152~hmac=877f6351f1bd0f4ef66d178c2c418196c86bcdd681e32c0d2e973b625d4d758b&w=360"
                         alt="New Arrivals"
-                        className="img-fluid"
+                        className="img-fluid w-100"
                       />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-8">
                       <h5>Fresh New Styles for the Season </h5>
                       <p>
                         Check out our latest arrivals and update your wardrobe
@@ -48,17 +48,17 @@ function App() {
             </div>
 
             <div className="col-md-6 ">
-              <div className="card">
-                <div className="p-4 bg-white">
+              <div className="card h-100">
+                <div className="card-body bg-white">
                   <div className="row g-3">
-                    <div className="col-md-4">
+                    <div className="col-4">
                       <img
                         src="https://img.freepik.com/free-photo/young-beautiful-woman-with-umbrella_155003-11033.jpg?t=st=1718105784~exp=1718109384~hmac=a447e93d93d27e0ef14172ee993d7798c829b3078da2b533909468141f1d044b&w=360"
                         alt="Monsoon Collection"
-                        className="img-fluid"
+                        className="img-fluid w-100"
                       />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-8">
                       <h5>Embrace the Monsoon with Style</h5>
                       <p>
                         Discover our exclusive Monsoon Collection, designed to

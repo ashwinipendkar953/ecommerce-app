@@ -16,7 +16,7 @@ const ProductFilter = ({ productsData = [], onFilterChange }) => {
           (acc, curr) => (curr.price > acc ? curr.price : acc),
           0
         )
-      : 2000;
+      : 40000;
 
   const INITIAL_FORM_DATA = {
     price: maxPrice,
