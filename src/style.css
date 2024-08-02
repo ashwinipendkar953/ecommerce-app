@@ -13,7 +13,6 @@
 
 @media (min-width: 992px) {
   .custom-col-lg-2 {
-    /* flex: 0 0 auto; */
     width: 20% !important;
   }
 }
@@ -28,11 +27,6 @@
 
 .footer-bg {
   background-color: #fc274b;
-}
-
-.active {
-  width: 375px;
-  border-color: #ff3e6c;
 }
 
 .btn-pink {
