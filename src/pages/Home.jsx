@@ -1,10 +1,10 @@
-import CategoryCardView from "../components/CategoryCardView";
 import Carousel from "../components/Carousel";
+import CategoryList from "../features/categories/CategoryList";
 
 function Home() {
   return (
     <main className="bg-light">
-      <CategoryCardView />
+      <CategoryList />
       <div className="container mb-3">
         <img
           src="https://assets.ajio.com/cms/AJIO/WEB/D-1.0-UHP-12062024-URGENCYSTRIPS-lastfewhrs.gif"

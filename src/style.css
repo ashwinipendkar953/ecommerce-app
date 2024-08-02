@@ -33,11 +33,6 @@
   opacity: 0.9;
 }
 
-/* Layout */
-.custom-col-lg-2 {
-  width: 20% !important;
-}
-
 /* Centering */
 .center-content {
   display: flex;

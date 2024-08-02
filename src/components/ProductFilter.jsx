@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
 import useFiltering from "../hooks/useFiltering";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../features/categories/categorySlice";
 
 const ProductFilter = ({ productsData = [], onFilterChange }) => {
-  const { data: categoriesData } = useFetch(
-    "https://ecommerce-api-teal.vercel.app/api/categories"
+  const dispatch = useDispatch();
+  const { categories: categoriesData } = useSelector(
+    (state) => state.categories
   );
-
   const { categoryName } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const maxPrice =
     productsData.length > 0

@@ -1,24 +1,25 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "./categorySlice";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-const CategoryCardView = () => {
-  const { data, loading, error } = useFetch(
-    "https://ecommerce-api-teal.vercel.app/api/categories"
+const CategoryList = () => {
+  const dispatch = useDispatch();
+  const { categories, status, error } = useSelector(
+    (state) => state.categories
   );
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchCategories());
+    }
+  }, [status, dispatch]);
 
   return (
     <div className="container py-3">
-      {loading && (
-        <div className="d-flex align-items-center mb-3">
-          <div
-            className="spinner-border text-primary me-2 spinner-border-sm"
-            aria-hidden="true"
-            style={{ width: "1.5rem", height: "1.5rem" }}
-          ></div>
-          <p className="mb-0" role="status">
-            Loading categories...
-          </p>
-        </div>
+      {status === "loading" && (
+        <LoadingSpinner size="md" message="Loading categories..." />
       )}
       {error && (
         <p className="text-danger">
@@ -26,7 +27,7 @@ const CategoryCardView = () => {
         </p>
       )}
       <div className="row d-lg-flex justify-content-between g-3">
-        {data?.map((category) => {
+        {categories?.map((category) => {
           if (category.name === "All") return null;
           return (
             <div key={category._id} className="custom-col-lg-2 col-md-6">
@@ -54,4 +55,4 @@ const CategoryCardView = () => {
   );
 };
 
-export default CategoryCardView;
+export default CategoryList;
