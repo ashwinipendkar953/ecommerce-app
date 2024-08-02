@@ -1,34 +1,27 @@
+/* Colors */
 .text-pink,
 .text-hover-pink:hover {
   color: #ff3e6c;
-}
-
-.bg-lightgreen {
-  background-color: #e5f7ee;
 }
 
 .star-color {
   color: #fed948;
 }
 
-@media (min-width: 992px) {
-  .custom-col-lg-2 {
-    width: 20% !important;
-  }
+.bg-lightgreen {
+  background-color: #e5f7ee;
+}
+
+.bg-pink,
+.footer-bg {
+  background-color: #fc274b;
 }
 
 .border-pink {
   border-color: #fc274b !important;
 }
 
-.bg-pink {
-  background-color: #fc274b;
-}
-
-.footer-bg {
-  background-color: #fc274b;
-}
-
+/* Buttons */
 .btn-pink {
   background-color: #ff3e6c !important;
   color: white !important;
@@ -40,12 +33,19 @@
   opacity: 0.9;
 }
 
+/* Layout */
+.custom-col-lg-2 {
+  width: 20% !important;
+}
+
+/* Centering */
 .center-content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Search Input */
 input[type="search"] {
   width: 100%;
   background-image: url("./assets/icons8-search-30.png");
@@ -54,8 +54,16 @@ input[type="search"] {
   padding: 12px 30px 12px 50px;
 }
 
+/* Navigation */
 .nav-link:hover {
   text-decoration: underline;
   line-height: normal;
   font-weight: bold;
+}
+
+/* Responsive Design */
+@media (min-width: 992px) {
+  .custom-col-lg-2 {
+    width: 20% !important;
+  }
 }
