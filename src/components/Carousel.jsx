@@ -20,7 +20,7 @@ const Carousel = () => {
             {carouselImages.map((image, index) => (
               <div
                 className={`carousel-item ${index === 0 ? "active" : ""}`}
-                data-bs-interval="10000"
+                data-bs-interval="5000"
                 key={index}
               >
                 <img

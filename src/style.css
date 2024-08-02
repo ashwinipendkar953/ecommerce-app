@@ -61,6 +61,12 @@ input[type="search"] {
   font-weight: bold;
 }
 
+/* Carousel */
+/* .active {
+  width: 375px;
+  border-color: #ff3e6c;
+} */
+
 /* Responsive Design */
 @media (min-width: 992px) {
   .custom-col-lg-2 {
