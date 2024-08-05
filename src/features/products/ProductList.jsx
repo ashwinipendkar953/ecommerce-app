@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "../../components/ProductCard";
+import { calculateDiscountedPrice } from "../../utils/helpers";
 
 const ProductList = ({ filteredProducts }) => {
   const { status, error } = useSelector((state) => state.products);
@@ -26,10 +27,6 @@ const ProductList = ({ filteredProducts }) => {
 
         {filteredProducts &&
           filteredProducts.map((product) => {
-            const discountedPrice = parseInt(
-              product.price - product.price * (product.discountPercentage / 100)
-            );
-
             return (
               <div className="col-sm-6 col-lg-4" key={product._id}>
                 <ProductCard
@@ -37,7 +34,10 @@ const ProductList = ({ filteredProducts }) => {
                   productName={product.name}
                   productBrand={product.brand}
                   productPrice={product.price}
-                  discountedPrice={discountedPrice}
+                  discountedPrice={calculateDiscountedPrice(
+                    product.price,
+                    product.discountPercentage
+                  )}
                   discountPercentage={product.discountPercentage}
                   productRating={product.rating}
                   isWishlisted={product.isWishlisted}
