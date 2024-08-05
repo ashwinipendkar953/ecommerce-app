@@ -21,11 +21,7 @@ const CategoryList = () => {
       {status === "loading" && (
         <LoadingSpinner size="md" message="Loading categories..." />
       )}
-      {error && (
-        <p className="text-danger">
-          An error occurred while getting categories.
-        </p>
-      )}
+      {error && <p className="text-danger">{error}</p>}
       <div className="row d-lg-flex justify-content-between g-3">
         {categories?.map((category) => {
           if (category.name === "All") return null;
