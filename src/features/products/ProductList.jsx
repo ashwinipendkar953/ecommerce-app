@@ -1,10 +1,20 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "../../components/ProductCard";
 import { calculateDiscountedPrice } from "../../utils/helpers";
+import { fetchProducts } from "./productSlice";
 
-const ProductList = ({ filteredProducts }) => {
-  const { status, error } = useSelector((state) => state.products);
+const ProductList = () => {
+  const { filteredProducts, status, error } = useSelector(
+    (state) => state.products
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <div className="bg-light py-4 px-5 h-100">

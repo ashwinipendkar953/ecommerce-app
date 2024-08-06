@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../features/categories/categorySlice";
 import { calculateMaxPrice } from "../utils/helpers";
 
-const ProductFilter = ({ onFilterChange }) => {
+const ProductFilterForm = () => {
   const dispatch = useDispatch();
   const { categories: categoriesData } = useSelector(
     (state) => state.categories
   );
-  const { products: productsData } = useSelector((state) => state.products);
   const { categoryName } = useParams();
+
+  const productsData = useSelector((state) => state.products.products);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -30,30 +31,31 @@ const ProductFilter = ({ onFilterChange }) => {
     const { checked, value } = event.target;
 
     setFormData((prevData) => {
-      let selectedCategories = [...prevData.categories];
+      let updatedCategories = [...prevData.categories];
 
       if (checked && value === "All") {
-        selectedCategories = ["All"];
+        updatedCategories = ["All"];
       } else if (!checked && value === "All") {
-        selectedCategories = [];
+        updatedCategories = [];
       } else if (checked) {
-        selectedCategories = selectedCategories.includes("All")
+        updatedCategories = updatedCategories.includes("All")
           ? [value]
-          : [...selectedCategories, value];
+          : [...updatedCategories, value];
       } else {
-        selectedCategories = selectedCategories.filter(
+        updatedCategories = updatedCategories.filter(
           (val) => val !== value && val !== "All"
         );
       }
 
-      return { ...prevData, categories: selectedCategories };
+      return { ...prevData, categories: updatedCategories };
     });
   };
 
-  useFiltering(productsData, formData, setFormData, onFilterChange);
+  useFiltering(productsData, formData);
 
   return (
     <form className="py-4 px-3">
+      {/* clear filters */}
       <div className="d-flex justify-content-between mb-3">
         <label className="form-label fw-bold">Filters</label>
         <Link
@@ -64,7 +66,6 @@ const ProductFilter = ({ onFilterChange }) => {
           Clear All
         </Link>
       </div>
-      <hr />
 
       {/* price */}
       <div className="mb-3">
@@ -139,15 +140,15 @@ const ProductFilter = ({ onFilterChange }) => {
         ))}
       </div>
 
-      {/* sort */}
+      {/* sort by price */}
       <div className="mb-3">
         <label className="form-label fw-bold">Sort by</label>
         <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
-            value="lowToHigh"
-            id="lowToHigh"
+            value="asc"
+            id="asc"
             name="sortByPrice"
             onChange={(event) =>
               setFormData((prevData) => ({
@@ -156,7 +157,7 @@ const ProductFilter = ({ onFilterChange }) => {
               }))
             }
           />
-          <label className="form-check-label" htmlFor="lowToHigh">
+          <label className="form-check-label" htmlFor="asc">
             Price - Low to High
           </label>
         </div>
@@ -165,8 +166,8 @@ const ProductFilter = ({ onFilterChange }) => {
           <input
             className="form-check-input"
             type="radio"
-            value="highToLow"
-            id="highToLow"
+            value="desc"
+            id="desc"
             name="sortByPrice"
             onChange={(event) =>
               setFormData((prevData) => ({
@@ -175,7 +176,7 @@ const ProductFilter = ({ onFilterChange }) => {
               }))
             }
           />
-          <label className="form-check-label" htmlFor="highToLow">
+          <label className="form-check-label" htmlFor="desc">
             Price - High to Low
           </label>
         </div>
@@ -184,4 +185,4 @@ const ProductFilter = ({ onFilterChange }) => {
   );
 };
 
-export default ProductFilter;
+export default ProductFilterForm;

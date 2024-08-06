@@ -1,7 +1,10 @@
 // useFiltering.js
 import { useEffect } from "react";
+import { setFilteredProducts } from "../features/products/productSlice";
+import { useDispatch } from "react-redux";
 
-const useFiltering = (productsData, formData, setFormData, onFilterChange) => {
+const useFiltering = (productsData, formData) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     const applyDiscount = (price, discount) => price - price * (discount / 100);
 
@@ -17,7 +20,7 @@ const useFiltering = (productsData, formData, setFormData, onFilterChange) => {
       products.sort((a, b) => {
         const priceA = applyDiscount(a.price, a.discountPercentage);
         const priceB = applyDiscount(b.price, b.discountPercentage);
-        return sortBy === "lowToHigh" ? priceA - priceB : priceB - priceA;
+        return sortBy === "asc" ? priceA - priceB : priceB - priceA;
       });
 
     const filterByPrice = (products, maxPrice) =>
@@ -31,8 +34,8 @@ const useFiltering = (productsData, formData, setFormData, onFilterChange) => {
     filteredData = sortByPrice(filteredData, formData.sortByPrice);
     filteredData = filterByPrice(filteredData, formData.price);
 
-    onFilterChange(filteredData);
-  }, [formData, setFormData, productsData]);
+    dispatch(setFilteredProducts(filteredData));
+  }, [formData, productsData]);
 };
 
 export default useFiltering;
