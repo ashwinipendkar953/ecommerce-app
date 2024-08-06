@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
 import ProductFilter from "../components/ProductFilter";
 import ProductList from "../features/products/ProductList";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +30,6 @@ const Products = () => {
             />
           </div>
           <div className="col-md-9">
-            {/* <ProductCard data={filteredData} loading={loading} error={error} /> */}
             <ProductList filteredProducts={filteredData} />
           </div>
         </div>

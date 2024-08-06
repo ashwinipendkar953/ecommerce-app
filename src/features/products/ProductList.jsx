@@ -19,9 +19,7 @@ const ProductList = ({ filteredProducts }) => {
         </span>
       </p>
       <div className="row g-4 pt-2 pb-5">
-        {status === "loading" && (
-          <LoadingSpinner size="md" message="Loading products..." />
-        )}
+        {status === "loading" && <LoadingSpinner />}
 
         {error && <p className="text-danger">{error}</p>}
 

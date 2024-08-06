@@ -1,10 +1,14 @@
-/**
- * Calculates the discounted price of a product.
- * @param {number} price - The original price of the product.
- * @param {number} discountPercentage - The discount percentage to apply.
- * @returns {number} - The discounted price.
- */
-
+// Calculates the discounted price of a product.
 export const calculateDiscountedPrice = (price, discountPercentage) => {
   return parseInt(price - price * (discountPercentage / 100));
+};
+
+// Calculate maxium price from products
+export const calculateMaxPrice = (productsData) => {
+  return productsData.length > 0
+    ? productsData.reduce(
+        (acc, curr) => (curr.price > acc ? curr.price : acc),
+        0
+      )
+    : 40000;
 };

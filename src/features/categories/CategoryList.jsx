@@ -18,9 +18,7 @@ const CategoryList = () => {
 
   return (
     <div className="container py-3">
-      {status === "loading" && (
-        <LoadingSpinner size="md" message="Loading categories..." />
-      )}
+      {status === "loading" && <LoadingSpinner />}
       {error && <p className="text-danger">{error}</p>}
       <div className="row d-lg-flex justify-content-between g-3">
         {categories?.map((category) => {

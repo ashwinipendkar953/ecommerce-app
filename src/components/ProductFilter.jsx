@@ -3,28 +3,22 @@ import { Link, useParams } from "react-router-dom";
 import useFiltering from "../hooks/useFiltering";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../features/categories/categorySlice";
+import { calculateMaxPrice } from "../utils/helpers";
 
-const ProductFilter = ({ productsData = [], onFilterChange }) => {
+const ProductFilter = ({ onFilterChange }) => {
   const dispatch = useDispatch();
   const { categories: categoriesData } = useSelector(
     (state) => state.categories
   );
+  const { products: productsData } = useSelector((state) => state.products);
   const { categoryName } = useParams();
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const maxPrice =
-    productsData.length > 0
-      ? productsData.reduce(
-          (acc, curr) => (curr.price > acc ? curr.price : acc),
-          0
-        )
-      : 40000;
-
   const INITIAL_FORM_DATA = {
-    price: maxPrice,
+    price: calculateMaxPrice(productsData),
     categories: categoryName ? categoryName : "All",
     rating: null,
     sortByPrice: null,
@@ -36,23 +30,23 @@ const ProductFilter = ({ productsData = [], onFilterChange }) => {
     const { checked, value } = event.target;
 
     setFormData((prevData) => {
-      let updatedCategories = [...prevData.categories];
+      let selectedCategories = [...prevData.categories];
 
       if (checked && value === "All") {
-        updatedCategories = ["All"];
+        selectedCategories = ["All"];
       } else if (!checked && value === "All") {
-        updatedCategories = [];
+        selectedCategories = [];
       } else if (checked) {
-        updatedCategories = updatedCategories.includes("All")
+        selectedCategories = selectedCategories.includes("All")
           ? [value]
-          : [...updatedCategories, value];
+          : [...selectedCategories, value];
       } else {
-        updatedCategories = updatedCategories.filter(
+        selectedCategories = selectedCategories.filter(
           (val) => val !== value && val !== "All"
         );
       }
 
-      return { ...prevData, categories: updatedCategories };
+      return { ...prevData, categories: selectedCategories };
     });
   };
 
@@ -70,6 +64,7 @@ const ProductFilter = ({ productsData = [], onFilterChange }) => {
           Clear All
         </Link>
       </div>
+      <hr />
 
       {/* price */}
       <div className="mb-3">
@@ -77,13 +72,13 @@ const ProductFilter = ({ productsData = [], onFilterChange }) => {
         <div className="d-flex justify-content-between">
           <span>0</span>
           <span>{formData.price}</span>
-          <span>{maxPrice}</span>
+          <span>{calculateMaxPrice(productsData)}</span>
         </div>
         <input
           type="range"
           id="price"
           min="0"
-          max={maxPrice}
+          max={calculateMaxPrice(productsData)}
           value={formData.price}
           className="w-100"
           onChange={(event) =>
