@@ -1,6 +1,6 @@
 // Calculates the discounted price of a product.
 export const calculateDiscountedPrice = (price, discountPercentage) => {
-  return parseInt(price - price * (discountPercentage / 100));
+  return Math.round(price - price * (discountPercentage / 100));
 };
 
 // Calculate maxium price from products

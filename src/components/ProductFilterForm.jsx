@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import useFiltering from "../hooks/useFiltering";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../features/categories/categorySlice";
+import { setFilters } from "../features/products/productSlice.js";
 import { calculateMaxPrice } from "../utils/helpers";
 
 const ProductFilterForm = () => {
@@ -12,46 +13,50 @@ const ProductFilterForm = () => {
   );
   const { categoryName } = useParams();
 
-  const productsData = useSelector((state) => state.products.products);
+  const { products: productsData, filteredProducts } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const INITIAL_FORM_DATA = {
-    price: calculateMaxPrice(productsData),
-    categories: categoryName ? categoryName : "All",
-    rating: null,
-    sortByPrice: null,
-  };
-
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [price, setPrice] = useState(calculateMaxPrice(productsData));
+  const [categories, setCategories] = useState(
+    categoryName ? [categoryName] : ["All"]
+  );
+  const [rating, setRating] = useState(null);
+  const [sortByPrice, setSortByPrice] = useState(null);
 
   const categoryChangeHandler = (event) => {
     const { checked, value } = event.target;
-
-    setFormData((prevData) => {
-      let updatedCategories = [...prevData.categories];
-
-      if (checked && value === "All") {
-        updatedCategories = ["All"];
-      } else if (!checked && value === "All") {
-        updatedCategories = [];
-      } else if (checked) {
-        updatedCategories = updatedCategories.includes("All")
-          ? [value]
-          : [...updatedCategories, value];
-      } else {
-        updatedCategories = updatedCategories.filter(
-          (val) => val !== value && val !== "All"
-        );
-      }
-
-      return { ...prevData, categories: updatedCategories };
-    });
+    if (checked && value === "All") {
+      setCategories(["All"]);
+    } else if (!checked && value === "All") {
+      setCategories([]);
+    } else if (checked) {
+      setCategories((prevVal) =>
+        prevVal.includes("All") ? [value] : [...prevVal, value]
+      );
+    } else {
+      setCategories((prevVal) =>
+        prevVal.filter((val) => val !== value && val !== "All")
+      );
+    }
   };
 
-  useFiltering(productsData, formData);
+  const clearFilterHandler = () => {
+    setPrice(calculateMaxPrice(filteredProducts));
+    setCategories(categoryName ? [categoryName] : ["All"]);
+    setRating(null);
+    setSortByPrice(null);
+  };
+
+  useEffect(() => {
+    dispatch(setFilters({ price, categories, rating, sortByPrice }));
+  }, [dispatch, price, categories, rating, sortByPrice]);
+
+  useFiltering(price, categories, rating, sortByPrice, productsData);
 
   return (
     <form className="py-4 px-3">
@@ -60,7 +65,7 @@ const ProductFilterForm = () => {
         <label className="form-label fw-bold">Filters</label>
         <Link
           type="button"
-          onClick={() => setFormData(INITIAL_FORM_DATA)}
+          onClick={clearFilterHandler}
           className="text-pink fw-semibold"
         >
           Clear All
@@ -72,7 +77,7 @@ const ProductFilterForm = () => {
         <label className="form-label fw-bold">Price</label>
         <div className="d-flex justify-content-between">
           <span>0</span>
-          <span>{formData.price}</span>
+          <span>{price}</span>
           <span>{calculateMaxPrice(productsData)}</span>
         </div>
         <input
@@ -80,14 +85,9 @@ const ProductFilterForm = () => {
           id="price"
           min="0"
           max={calculateMaxPrice(productsData)}
-          value={formData.price}
+          value={price}
           className="w-100"
-          onChange={(event) =>
-            setFormData((prevData) => ({
-              ...prevData,
-              price: event.target.value,
-            }))
-          }
+          onChange={(event) => setPrice(event.target.value)}
         />
       </div>
 
@@ -102,7 +102,7 @@ const ProductFilterForm = () => {
               value={category.name}
               id={category._id}
               name={category.name}
-              checked={formData.categories.includes(`${category.name}`)}
+              checked={categories.includes(`${category.name}`)}
               onChange={categoryChangeHandler}
             />
             <label className="form-check-label" htmlFor={category._id}>
@@ -123,12 +123,7 @@ const ProductFilterForm = () => {
               value={rating}
               id={`rating${rating}AndAbove`}
               name="rating"
-              onChange={(event) =>
-                setFormData((prevData) => ({
-                  ...prevData,
-                  rating: event.target.value,
-                }))
-              }
+              onChange={(event) => setRating(event.target.value)}
             />
             <label
               className="form-check-label"
@@ -150,12 +145,7 @@ const ProductFilterForm = () => {
             value="asc"
             id="asc"
             name="sortByPrice"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                sortByPrice: event.target.value,
-              }))
-            }
+            onChange={(event) => setSortByPrice(event.target.value)}
           />
           <label className="form-check-label" htmlFor="asc">
             Price - Low to High
@@ -169,12 +159,7 @@ const ProductFilterForm = () => {
             value="desc"
             id="desc"
             name="sortByPrice"
-            onChange={(event) =>
-              setFormData((prevData) => ({
-                ...prevData,
-                sortByPrice: event.target.value,
-              }))
-            }
+            onChange={(event) => setSortByPrice(event.target.value)}
           />
           <label className="form-check-label" htmlFor="desc">
             Price - High to Low

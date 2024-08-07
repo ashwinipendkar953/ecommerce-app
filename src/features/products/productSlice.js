@@ -19,11 +19,19 @@ const productSlice = createSlice({
     product: null,
     status: "idle",
     error: null,
-    sortByPrice: null,
+    filters: {
+      price: null,
+      categories: ["All"],
+      rating: null,
+      sortByPrice: null,
+    },
   },
   reducers: {
     setFilteredProducts: (state, action) => {
       state.filteredProducts = action.payload;
+    },
+    setFilters: (state, action) => {
+      state.filters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -42,6 +50,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { setFilteredProducts } = productSlice.actions;
+export const { setFilteredProducts, setFilters } = productSlice.actions;
 
 export const productReducer = productSlice.reducer;

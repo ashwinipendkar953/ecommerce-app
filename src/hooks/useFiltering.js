@@ -1,41 +1,44 @@
-// useFiltering.js
 import { useEffect } from "react";
 import { setFilteredProducts } from "../features/products/productSlice";
 import { useDispatch } from "react-redux";
+import { calculateDiscountedPrice } from "../utils/helpers";
 
-const useFiltering = (productsData, formData) => {
+const useFiltering = (price, categories, rating, sortByPrice, productsData) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const applyDiscount = (price, discount) => price - price * (discount / 100);
 
+  useEffect(() => {
     const filterByCategory = (products, categories) =>
       categories.includes("All")
         ? products
         : products.filter((product) => categories.includes(product.category));
 
     const filterByRating = (products, rating) =>
-      products.filter((product) => product.rating >= rating);
+      rating
+        ? products.filter((product) => product.rating >= rating)
+        : products;
 
-    const sortByPrice = (products, sortBy) =>
-      products.sort((a, b) => {
-        const priceA = applyDiscount(a.price, a.discountPercentage);
-        const priceB = applyDiscount(b.price, b.discountPercentage);
+    const sortByPriceOrder = (products, sortBy) => {
+      return [...products].sort((a, b) => {
+        const priceA = calculateDiscountedPrice(a.price, a.discountPercentage);
+        const priceB = calculateDiscountedPrice(b.price, b.discountPercentage);
         return sortBy === "asc" ? priceA - priceB : priceB - priceA;
       });
+    };
 
     const filterByPrice = (products, maxPrice) =>
       products.filter(
         (product) =>
-          applyDiscount(product.price, product.discountPercentage) <= maxPrice
+          calculateDiscountedPrice(product.price, product.discountPercentage) <=
+          maxPrice
       );
 
-    let filteredData = filterByCategory(productsData, formData.categories);
-    filteredData = filterByRating(filteredData, formData.rating);
-    filteredData = sortByPrice(filteredData, formData.sortByPrice);
-    filteredData = filterByPrice(filteredData, formData.price);
+    let filteredData = filterByCategory(productsData, categories);
+    filteredData = filterByRating(filteredData, rating);
+    filteredData = sortByPriceOrder(filteredData, sortByPrice);
+    filteredData = filterByPrice(filteredData, price);
 
     dispatch(setFilteredProducts(filteredData));
-  }, [formData, productsData]);
+  }, [dispatch, price, categories, rating, sortByPrice, productsData]);
 };
 
 export default useFiltering;
