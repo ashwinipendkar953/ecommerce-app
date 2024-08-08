@@ -4,6 +4,10 @@
   color: #ff3e6c;
 }
 
+.text-grey {
+  color: #878787;
+}
+
 .star-color {
   color: #fed948;
 }
@@ -12,9 +16,21 @@
   background-color: #e5f7ee;
 }
 
-.bg-pink,
-.footer-bg {
+.bg-lightgrey {
+  background-color: rgb(243, 243, 243);
+}
+
+.shadow-light {
+  z-index: 10;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.bg-pink {
   background-color: #fc274b;
+}
+
+.footer-bg {
+  background-color: rgb(243, 243, 243);
 }
 
 .border-pink {

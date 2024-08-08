@@ -1,20 +1,11 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "./categorySlice";
+import { useSelector } from "react-redux";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 const CategoryList = () => {
-  const dispatch = useDispatch();
   const { categories, status, error } = useSelector(
     (state) => state.categories
   );
-
-  useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchCategories());
-    }
-  }, [status, dispatch]);
 
   return (
     <div className="container py-3">

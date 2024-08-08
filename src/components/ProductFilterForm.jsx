@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFiltering from "../hooks/useFiltering";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../features/categories/categorySlice";
 import { setFilters } from "../features/products/productSlice.js";
 import { calculateMaxPrice } from "../utils/helpers";
 
@@ -16,10 +15,6 @@ const ProductFilterForm = () => {
   const { products: productsData, filteredProducts } = useSelector(
     (state) => state.products
   );
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
 
   const [price, setPrice] = useState(calculateMaxPrice(productsData));
   const [categories, setCategories] = useState(
